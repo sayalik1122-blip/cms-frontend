@@ -1,23 +1,9 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MdSchool } from 'react-icons/md';
 import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
-  const location = useLocation();
-
-  const scrollToSection = (id) => {
-    // If we are not on the homepage, navigate there first
-    if (location.pathname !== '/') {
-      window.location.href = `/#${id}`;
-      return;
-    }
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -51,9 +37,9 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-4">Product</h4>
             <ul className="space-y-2 text-sm">
-              <li><button onClick={() => scrollToSection('features')} className="hover:text-primary-400 transition-colors">Features</button></li>
-              <li><button onClick={() => scrollToSection('about')} className="hover:text-primary-400 transition-colors">About Us</button></li>
-              <li><button onClick={() => scrollToSection('testimonials')} className="hover:text-primary-400 transition-colors">Testimonials</button></li>
+              <li><Link to="/features" className="hover:text-primary-400 transition-colors">Features</Link></li>
+              <li><Link to="/about" className="hover:text-primary-400 transition-colors">About Us</Link></li>
+              <li><Link to="/testimonials" className="hover:text-primary-400 transition-colors">Testimonials</Link></li>
               <li><Link to="/pricing" className="hover:text-primary-400 transition-colors">Pricing</Link></li>
             </ul>
           </div>

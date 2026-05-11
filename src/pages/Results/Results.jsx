@@ -60,7 +60,7 @@ const Results = () => {
         setResults(prev => prev.map(r => r.id === editing.id ? updated : r));
         toast.success('Result updated!');
       } else {
-        const created = await api.create('results', { ...payload, id: Date.now() });
+        const created = await api.create('results', payload);
         setResults(prev => [...prev, created]);
         toast.success('Result published!');
       }

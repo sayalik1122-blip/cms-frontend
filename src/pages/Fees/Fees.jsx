@@ -46,8 +46,7 @@ const Fees = () => {
         setFees(prev => prev.map(f => f.id === editing.id ? updated : f));
         toast.success('Fee record updated!');
       } else {
-        const newId = `TXN${Date.now()}`;
-        const created = await api.create('fees', { ...form, id: newId });
+        const created = await api.create('fees', form);
         setFees(prev => [...prev, created]);
         toast.success('Fee record created!');
       }

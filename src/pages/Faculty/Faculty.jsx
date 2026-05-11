@@ -48,8 +48,7 @@ const Faculty = () => {
         setFaculty(prev => prev.map(f => f.id === editing.id ? updated : f));
         toast.success(`${form.name} updated!`);
       } else {
-        const newId = generateId('F', faculty);
-        const created = await api.create('faculty', { ...payload, id: newId });
+        const created = await api.create('faculty', payload);
         setFaculty(prev => [...prev, created]);
         toast.success(`${form.name} added to faculty!`);
       }

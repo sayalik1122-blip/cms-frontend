@@ -6,7 +6,7 @@ import {
 } from 'react-icons/md';
 import { toast } from 'react-toastify';
 
-const SETTINGS_API = 'http://localhost:5000/settings';
+import { api } from '../../services/api';
 
 const Settings = () => {
   const { theme, toggleTheme } = useTheme();
@@ -28,9 +28,8 @@ const Settings = () => {
 
   const fetchSettings = async () => {
     try {
-      const response = await fetch(SETTINGS_API);
-      const data = await response.json();
-      setSettings(data);
+      const data = await api.getAll('settings').catch(() => ({}));
+      setSettings(prev => ({ ...prev, ...data }));
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching settings:', error);
@@ -40,14 +39,8 @@ const Settings = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(SETTINGS_API, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(settings)
-      });
-      if (response.ok) {
-        toast.success('System configuration saved successfully!');
-      }
+      await api.create('settings', settings); // Simple create/update logic for settings
+      toast.success('System configuration saved successfully!');
     } catch (error) {
       toast.error('Failed to save settings.');
     }

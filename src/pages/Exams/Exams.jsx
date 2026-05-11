@@ -66,7 +66,7 @@ const Exams = () => {
         setExams(prev => prev.map(ex => ex.id === editing.id ? updated : ex));
         toast.success('Exam updated!');
       } else {
-        const created = await api.create('exams', { ...form, id: Date.now(), status: 'Scheduled' });
+        const created = await api.create('exams', { ...form, status: 'Scheduled' });
         setExams(prev => [...prev, created]);
         toast.success('Exam scheduled!');
       }
@@ -131,7 +131,7 @@ const Exams = () => {
         if (existing) {
           return api.update('results', existing.id, payload);
         } else {
-          return api.create('results', { ...payload, id: Date.now() + Math.random() });
+          return api.create('results', payload);
         }
       });
 

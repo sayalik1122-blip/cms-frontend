@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { MdMenu, MdClose, MdSchool, MdPerson } from 'react-icons/md';
 
 const Navbar = () => {
@@ -18,41 +17,22 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home', isScroll: true },
-    { name: 'Features', href: '#features', isScroll: true },
-    { name: 'About', href: '#about', isScroll: true },
-    { name: 'Testimonials', href: '#testimonials', isScroll: true },
-    { name: 'Pricing', href: '/pricing', isScroll: false },
-    { name: 'Contact', href: '/contact', isScroll: false },
+    { name: 'Home', href: '/' },
+    { name: 'Features', href: '/features' },
+    { name: 'About', href: '/about' },
+    { name: 'Testimonials', href: '/testimonials' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'Contact', href: '/contact' },
   ];
 
-  const handleNavClick = (e, link) => {
-    if (link.isScroll) {
-      e.preventDefault();
-      setMobileMenuOpen(false);
-      
-      // If not on the homepage, navigate to home with the hash
-      if (location.pathname !== '/') {
-        window.location.href = `/${link.href}`;
-        return;
-      }
-
-      const element = document.querySelector(link.href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      setMobileMenuOpen(false);
-      navigate(link.href);
-    }
+  const handleNavClick = (link) => {
+    setMobileMenuOpen(false);
+    navigate(link.href);
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 ${
         isScrolled ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
       }`}
     >
@@ -71,16 +51,16 @@ const Navbar = () => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link)}
+                to={link.href}
+                onClick={() => handleNavClick(link)}
                 className={`text-sm font-medium hover:text-primary-600 transition-colors cursor-pointer ${
                   isScrolled ? 'text-slate-600 dark:text-slate-300' : 'text-slate-700 dark:text-slate-200'
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -122,50 +102,43 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden"
-          >
-            <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link)}
-                  className="block text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 cursor-pointer"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col space-y-3">
-                <button
-                  onClick={() => { navigate('/login', { state: { role: 'student' } }); setMobileMenuOpen(false); }}
-                  className="w-full flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700 rounded-lg"
-                >
-                  <MdPerson /> Student Login
-                </button>
-                <button
-                  onClick={() => { navigate('/login'); setMobileMenuOpen(false); }}
-                  className="w-full text-center px-5 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 rounded-lg"
-                >
-                  Admin Login
-                </button>
-                <button
-                  onClick={() => { navigate('/register'); setMobileMenuOpen(false); }}
-                  className="w-full text-center px-5 py-3 text-sm font-medium text-white bg-primary-600 rounded-lg"
-                >
-                  Get Started
-                </button>
-              </div>
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
+          <div className="px-4 py-6 space-y-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                onClick={() => handleNavClick(link)}
+                className="block text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 cursor-pointer"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col space-y-3">
+              <button
+                onClick={() => { navigate('/login', { state: { role: 'student' } }); setMobileMenuOpen(false); }}
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700 rounded-lg"
+              >
+                <MdPerson /> Student Login
+              </button>
+              <button
+                onClick={() => { navigate('/login'); setMobileMenuOpen(false); }}
+                className="w-full text-center px-5 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800 rounded-lg"
+              >
+                Admin Login
+              </button>
+              <button
+                onClick={() => { navigate('/register'); setMobileMenuOpen(false); }}
+                className="w-full text-center px-5 py-3 text-sm font-medium text-white bg-primary-600 rounded-lg"
+              >
+                Get Started
+              </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

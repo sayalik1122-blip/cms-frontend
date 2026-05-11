@@ -61,7 +61,7 @@ const Attendance = () => {
         setRecords(prev => prev.map(r => r.id === editing.id ? updated : r));
         toast.success('Attendance record updated.');
       } else {
-        const created = await api.create('attendance', { ...form, id: Date.now() });
+        const created = await api.create('attendance', form);
         setRecords(prev => [...prev, created]);
         toast.success('Attendance marked.');
       }

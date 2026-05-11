@@ -6,7 +6,7 @@ import Modal from '../../components/Modal';
 import { api } from '../../services/api';
 
 const SEMESTERS = ['1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th'];
-const emptyForm = { code: '', name: '', faculty: '', semester: '1st', credits: '3', department: '' };
+const emptyForm = { code: '', name: '', facultyId: '', semester: '1st', credits: '3' };
 
 const Subjects = () => {
   const [subjects, setSubjects] = useState([]);
@@ -31,7 +31,19 @@ const Subjects = () => {
 
   const openModal = (subject = null) => {
     setEditing(subject);
-    setForm(subject ? { ...subject } : { ...emptyForm });
+    if (subject) {
+        // Find faculty id by name if not directly present (though it should be in a real DTO)
+        const faculty = facultyList.find(f => f.name === subject.faculty);
+        setForm({
+            code: subject.code,
+            name: subject.name,
+            facultyId: faculty ? faculty.id : '',
+            semester: subject.semester,
+            credits: subject.credits
+        });
+    } else {
+        setForm(emptyForm);
+    }
     setModalOpen(true);
   };
 
@@ -39,14 +51,18 @@ const Subjects = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload = {
+        ...form,
+        credits: Number(form.credits),
+        facultyId: form.facultyId ? Number(form.facultyId) : null
+    };
     try {
       if (editing) {
-        const updated = await api.update('subjects', editing.id, form);
+        const updated = await api.update('subjects', editing.id, payload);
         setSubjects(prev => prev.map(s => s.id === editing.id ? updated : s));
         toast.success('Subject updated!');
       } else {
-        const newId = `SUB${String(subjects.length + 1).padStart(3, '0')}`;
-        const created = await api.create('subjects', { ...form, id: newId });
+        const created = await api.create('subjects', payload);
         setSubjects(prev => [...prev, created]);
         toast.success('Subject added!');
       }
@@ -110,9 +126,9 @@ const Subjects = () => {
           </div>
           <div>
             <label className="block text-sm font-medium mb-1.5">Assigned Faculty *</label>
-            <select required className="input-field" value={form.faculty} onChange={e => setForm(f => ({ ...f, faculty: e.target.value }))}>
+            <select required className="input-field" value={form.facultyId} onChange={e => setForm(f => ({ ...f, facultyId: e.target.value }))}>
               <option value="">Select Faculty</option>
-              {facultyList.map(fac => <option key={fac.id} value={fac.name}>{fac.name} — {fac.department}</option>)}
+              {facultyList.map(fac => <option key={fac.id} value={fac.id}>{fac.name} — {fac.department}</option>)}
             </select>
           </div>
           <div>

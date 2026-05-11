@@ -8,7 +8,7 @@ import { api, generateId } from '../../services/api';
 const COURSES = ['Computer Science', 'Mechanical Eng.', 'Civil Eng.', 'Electrical Eng.', 'Information Tech.', 'Electronics Eng.'];
 const YEARS = ['1st', '2nd', '3rd', '4th'];
 
-const emptyForm = { name: '', email: '', phone: '', course: '', year: '1st', status: 'Active', address: '' };
+const emptyForm = { name: '', email: '', password: '', course: '', year: '1st', phone: '', status: 'Active', address: '' };
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -48,8 +48,7 @@ const Students = () => {
         setStudents(prev => prev.map(s => s.id === editing.id ? updated : s));
         toast.success(`${form.name} updated successfully!`);
       } else {
-        const newId = generateId('S', students);
-        const created = await api.create('students', { ...form, id: newId });
+        const created = await api.create('students', form);
         setStudents(prev => [...prev, created]);
         toast.success(`${form.name} enrolled successfully!`);
       }
@@ -75,7 +74,7 @@ const Students = () => {
   const inactiveCount = students.filter(s => s.status === 'Inactive').length;
 
   const columns = [
-    { header: 'ID', accessor: 'id' },
+    { header: 'ID', accessor: 'displayId' },
     { header: 'Name', accessor: 'name', render: (row) => (
       <div className="flex items-center gap-3">
         <div className="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-600 font-bold text-xs flex-shrink-0">
@@ -191,6 +190,11 @@ const Students = () => {
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
               </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Login Password *</label>
+              <input type="text" required={!editing} className="input-field" placeholder={editing ? "Leave blank to keep same" : "e.g. student123"}
+                value={form.password} onChange={e => setForm(f => ({ ...f, password: e.target.value }))} />
             </div>
           </div>
           <div>

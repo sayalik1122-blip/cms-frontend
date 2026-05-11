@@ -47,7 +47,7 @@ const Timetable = () => {
         setSlots(prev => prev.map(s => s.id === editing.id ? updated : s).sort((a, b) => a.time.localeCompare(b.time)));
         toast.success('Slot updated!');
       } else {
-        const created = await api.create('timetable', { ...form, id: Date.now() });
+        const created = await api.create('timetable', form);
         setSlots(prev => [...prev, created].sort((a, b) => a.time.localeCompare(b.time)));
         toast.success('Slot added!');
       }

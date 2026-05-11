@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdPeople, MdPerson, MdBook, MdAttachMoney } from 'react-icons/md';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { api } from '../../services/api';
 
 const Dashboard = () => {
   const [data, setData] = useState({
@@ -9,7 +10,10 @@ const Dashboard = () => {
     totalSubjects: 0,
     totalRevenue: 0,
     recentActivities: [],
-    chartData: null
+    chartData: {
+      studentGrowth: [],
+      departmentDistribution: []
+    }
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,21 +23,28 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const [studentsRes, facultyRes, subjectsRes, feesRes, activitiesRes, chartRes] = await Promise.all([
-        fetch('http://localhost:5000/students'),
-        fetch('http://localhost:5000/faculty'),
-        fetch('http://localhost:5000/subjects'),
-        fetch('http://localhost:5000/fees'),
-        fetch('http://localhost:5000/recentActivities'),
-        fetch('http://localhost:5000/chartData')
+      const [students, faculty, subjects, fees] = await Promise.all([
+        api.getAll('students'),
+        api.getAll('faculty'),
+        api.getAll('subjects'),
+        api.getAll('fees').catch(() => []) // Handle potential 404/empty
       ]);
 
-      const students = await studentsRes.json();
-      const faculty = await facultyRes.json();
-      const subjects = await subjectsRes.json();
-      const fees = await feesRes.json();
-      const recentActivities = await activitiesRes.json();
-      const chartData = await chartRes.json();
+      // Temporary mock for activities and charts until implemented in Spring Boot
+      const recentActivities = [
+        { id: 1, action: "System initialized", time: "Just now" }
+      ];
+      const chartData = {
+        studentGrowth: [
+          { name: 'Jan', students: 10 },
+          { name: 'Feb', students: 20 },
+          { name: 'Mar', students: 45 }
+        ],
+        departmentDistribution: [
+          { name: 'CS', value: 400 },
+          { name: 'Mechanical', value: 300 }
+        ]
+      };
 
       const totalRevenue = fees
         .filter(f => f.status === 'Paid')

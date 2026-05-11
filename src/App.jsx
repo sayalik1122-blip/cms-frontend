@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -49,6 +49,9 @@ import TermsOfService from './pages/Public/TermsOfService';
 import HelpCenter from './pages/Public/HelpCenter';
 import FAQPage from './pages/Public/FAQPage';
 import ContactPage from './pages/Public/ContactPage';
+import FeaturesPage from './pages/Public/FeaturesPage';
+import AboutPage from './pages/Public/AboutPage';
+import TestimonialsPage from './pages/Public/TestimonialsPage';
 
 const App = () => (
   <AuthProvider>
@@ -58,6 +61,9 @@ const App = () => (
       {/* Public */}
       <Route path="/" element={<Landing />} />
       <Route path="/pricing" element={<Pricing />} />
+      <Route path="/features" element={<FeaturesPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/testimonials" element={<TestimonialsPage />} />
       <Route path="/docs" element={<Documentation />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />

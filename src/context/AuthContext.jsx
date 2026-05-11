@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const AuthContext = createContext(null);
 const SESSION_KEY = 'cms_auth_user';
+const API_BASE = 'http://localhost:8080/api';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
@@ -15,35 +16,31 @@ export const AuthProvider = ({ children }) => {
   const login = useCallback(async (email, password) => {
     setLoading(true);
     try {
-      // Search admin users first
-      const adminRes = await fetch(`http://localhost:5000/users?email=${encodeURIComponent(email)}`);
-      if (!adminRes.ok) throw new Error('Cannot connect to server. Is the JSON server running?');
-      const admins = await adminRes.json();
-      const adminMatch = admins.find(u => u.email === email && u.password === password);
+      const response = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-      if (adminMatch) {
-        const { password: _p, ...safeUser } = adminMatch;
-        const userWithRole = { ...safeUser, role: 'admin' };
-        localStorage.setItem(SESSION_KEY, JSON.stringify(userWithRole));
-        setUser(userWithRole);
-        return { success: true, user: userWithRole };
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData || 'Invalid credentials');
       }
 
-      // Search students
-      const stuRes = await fetch(`http://localhost:5000/students?email=${encodeURIComponent(email)}`);
-      const students = await stuRes.json();
-      const studentMatch = students.find(s => s.email === email && s.password === password);
+      const data = await response.json(); // { token, user, role }
+      
+      // Ensure the user object has the role correctly formatted for frontend state
+      const userWithRole = { 
+        ...data.user, 
+        token: data.token, 
+        role: data.role.toLowerCase() 
+      };
 
-      if (studentMatch) {
-        const { password: _p, ...safeUser } = studentMatch;
-        const userWithRole = { ...safeUser, role: 'student' };
-        localStorage.setItem(SESSION_KEY, JSON.stringify(userWithRole));
-        setUser(userWithRole);
-        return { success: true, user: userWithRole };
-      }
-
-      throw new Error('Invalid email or password');
+      localStorage.setItem(SESSION_KEY, JSON.stringify(userWithRole));
+      setUser(userWithRole);
+      return { success: true, user: userWithRole };
     } catch (err) {
+      console.error('Login error:', err);
       return { success: false, error: err.message };
     } finally {
       setLoading(false);
@@ -53,18 +50,20 @@ export const AuthProvider = ({ children }) => {
   const register = useCallback(async ({ name, email, password, institution }) => {
     setLoading(true);
     try {
-      const checkRes = await fetch(`http://localhost:5000/users?email=${encodeURIComponent(email)}`);
-      const existing = await checkRes.json();
-      if (existing.length > 0) throw new Error('An account with this email already exists');
-      const newUser = { name, email, password, institution, role: 'admin', createdAt: new Date().toISOString() };
-      const createRes = await fetch('http://localhost:5000/users', {
+      const response = await fetch(`${API_BASE}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify({ name, email, password, institution }),
       });
-      if (!createRes.ok) throw new Error('Failed to create account');
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData || 'Registration failed');
+      }
+
       return { success: true };
     } catch (err) {
+      console.error('Registration error:', err);
       return { success: false, error: err.message };
     } finally {
       setLoading(false);
