@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8080/api';
+const BASE_URL = 'https://cms-backend-e2nw.onrender.com/api';
 const SESSION_KEY = 'cms_auth_user';
 
 const getHeaders = () => {

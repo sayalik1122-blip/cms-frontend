@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 
 const AuthContext = createContext(null);
 const SESSION_KEY = 'cms_auth_user';
-const API_BASE = 'http://localhost:8080/api';
+const API_BASE = 'https://cms-backend-e2nw.onrender.com/api';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
