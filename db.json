@@ -1,0 +1,572 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "email": "admin@edu.com",
+      "password": "admin123",
+      "role": "admin",
+      "institution": "National Institute of Technology"
+    },
+    {
+      "name": "Ajay Jamale",
+      "email": "ajayjamale90@gmail.com",
+      "password": "$Ajay123",
+      "institution": "AJ College of CS",
+      "role": "admin",
+      "createdAt": "2026-05-11T05:52:50.856Z",
+      "id": 2
+    }
+  ],
+  "summaryCards": {
+    "totalStudents": 1250,
+    "totalFaculty": 85,
+    "totalSubjects": 45,
+    "totalRevenue": 2500000
+  },
+  "recentActivities": [
+    {
+      "id": 1,
+      "action": "New student Aarav Sharma enrolled",
+      "time": "2 hours ago"
+    },
+    {
+      "id": 2,
+      "action": "Fee payment received from Diya Patel",
+      "time": "5 hours ago"
+    },
+    {
+      "id": 3,
+      "action": "Faculty meeting scheduled by Dr. Rajesh Kumar",
+      "time": "1 day ago"
+    },
+    {
+      "id": 4,
+      "action": "New course 'Cloud Computing' added",
+      "time": "2 days ago"
+    },
+    {
+      "id": 5,
+      "action": "Result published for Semester 3",
+      "time": "3 days ago"
+    }
+  ],
+  "students": [
+    {
+      "id": "S002",
+      "name": "Diya Patel",
+      "email": "diya@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Mechanical Eng.",
+      "year": "3rd",
+      "phone": "8765432109",
+      "status": "Active"
+    },
+    {
+      "id": "S003",
+      "name": "Rohan Gupta",
+      "email": "rohan@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Civil Eng.",
+      "year": "1st",
+      "phone": "7654321098",
+      "status": "Inactive"
+    },
+    {
+      "id": "S004",
+      "name": "Ananya Singh",
+      "email": "ananya@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Computer Science",
+      "year": "4th",
+      "phone": "6543210987",
+      "status": "Active"
+    },
+    {
+      "id": "S005",
+      "name": "Ishaan Malhotra",
+      "email": "ishaan@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Electrical Eng.",
+      "year": "2nd",
+      "phone": "9988776655",
+      "status": "Active"
+    },
+    {
+      "id": "S006",
+      "name": "Kavya Reddy",
+      "email": "kavya@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Information Tech.",
+      "year": "3rd",
+      "phone": "8877665544",
+      "status": "Active"
+    },
+    {
+      "id": "S007",
+      "name": "Vivaan Joshi",
+      "email": "vivaan@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Electronics Eng.",
+      "year": "1st",
+      "phone": "7766554433",
+      "status": "Active"
+    },
+    {
+      "id": "S008",
+      "name": "Myra Kapoor",
+      "email": "myra@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Civil Eng.",
+      "year": "4th",
+      "phone": "6655443322",
+      "status": "Inactive"
+    },
+    {
+      "id": "S009",
+      "name": "Arjun Verma",
+      "email": "arjun@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Computer Science",
+      "year": "3rd",
+      "phone": "5544332211",
+      "status": "Active"
+    },
+    {
+      "id": "S010",
+      "name": "Saanvi Iyer",
+      "email": "saanvi@example.com",
+      "password": "student123",
+      "role": "student",
+      "course": "Mechanical Eng.",
+      "year": "2nd",
+      "phone": "4433221100",
+      "status": "Active"
+    },
+    {
+      "name": "Ajay Jamale",
+      "email": "ajayjamale90@gmail.com",
+      "password": "student123",
+      "role": "student",
+      "phone": "09874563215",
+      "course": "Mechanical Eng.",
+      "year": "1st",
+      "status": "Active",
+      "address": "K Tadwale",
+      "id": "S011"
+    }
+  ],
+  "faculty": [
+    {
+      "id": "F001",
+      "name": "Dr. Rajesh Kumar",
+      "department": "Computer Science",
+      "experience": "15 Years",
+      "subjects": [
+        "Algorithms",
+        "AI"
+      ],
+      "email": "rajesh@example.com"
+    },
+    {
+      "id": "F002",
+      "name": "Dr. Meera Iyer",
+      "department": "Physics",
+      "experience": "20 Years",
+      "subjects": [
+        "Quantum Mechanics",
+        "Thermodynamics"
+      ],
+      "email": "meera@example.com"
+    },
+    {
+      "id": "F003",
+      "name": "Prof. Amit Shah",
+      "department": "Mechanical Eng.",
+      "experience": "12 Years",
+      "subjects": [
+        "Fluid Dynamics",
+        "Thermodynamics"
+      ],
+      "email": "amit@example.com"
+    },
+    {
+      "id": "F004",
+      "name": "Dr. Sneha Patil",
+      "department": "Civil Eng.",
+      "experience": "18 Years",
+      "subjects": [
+        "Structural Analysis",
+        "Surveying"
+      ],
+      "email": "sneha@example.com",
+      "phone": "7895648245"
+    },
+    {
+      "id": "F005",
+      "name": "Prof. Vikram Seth",
+      "department": "Electrical Eng.",
+      "experience": "10 Years",
+      "subjects": [
+        "Control Systems",
+        "Circuit Theory"
+      ],
+      "email": "vikram@example.com"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "SUB001",
+      "name": "Data Structures",
+      "code": "CS201",
+      "faculty": "Dr. Rajesh Kumar",
+      "semester": "3rd",
+      "credits": 4
+    },
+    {
+      "id": "SUB002",
+      "name": "Artificial Intelligence",
+      "code": "CS401",
+      "faculty": "Dr. Rajesh Kumar",
+      "semester": "7th",
+      "credits": 4
+    },
+    {
+      "id": "SUB003",
+      "name": "Fluid Mechanics",
+      "code": "ME202",
+      "faculty": "Prof. Amit Shah",
+      "semester": "4th",
+      "credits": 3
+    },
+    {
+      "id": "SUB004",
+      "name": "Structural Analysis",
+      "code": "CE301",
+      "faculty": "Dr. Sneha Patil",
+      "semester": "5th",
+      "credits": 4
+    },
+    {
+      "id": "SUB005",
+      "name": "Control Systems",
+      "code": "EE302",
+      "faculty": "Prof. Vikram Seth",
+      "semester": "6th",
+      "credits": 4
+    },
+    {
+      "id": "SUB006",
+      "name": "Quantum Physics",
+      "code": "PH101",
+      "faculty": "Dr. Meera Iyer",
+      "semester": "1st",
+      "credits": 3
+    }
+  ],
+  "fees": [
+    {
+      "id": "TXN001",
+      "studentName": "Aarav Sharma",
+      "amount": 15000,
+      "dueDate": "2026-06-01",
+      "status": "Paid",
+      "transactionId": "TRX88291"
+    },
+    {
+      "id": "TXN002",
+      "studentName": "Diya Patel",
+      "amount": 15000,
+      "dueDate": "2026-06-01",
+      "status": "Unpaid",
+      "transactionId": "-"
+    },
+    {
+      "id": "TXN003",
+      "studentName": "Rohan Gupta",
+      "amount": 12000,
+      "dueDate": "2026-05-15",
+      "status": "Paid",
+      "transactionId": "TRX99302"
+    },
+    {
+      "id": "TXN004",
+      "studentName": "Ananya Singh",
+      "amount": 15000,
+      "dueDate": "2026-06-01",
+      "status": "Unpaid",
+      "transactionId": "-"
+    },
+    {
+      "id": "TXN005",
+      "studentName": "Ishaan Malhotra",
+      "amount": 14000,
+      "dueDate": "2026-05-20",
+      "status": "Paid",
+      "transactionId": "TRX77182"
+    },
+    {
+      "id": "TXN006",
+      "studentName": "Kavya Reddy",
+      "amount": 13000,
+      "dueDate": "2026-06-10",
+      "status": "Paid",
+      "transactionId": "TRX66271"
+    },
+    {
+      "id": "TXN007",
+      "studentName": "Vivaan Joshi",
+      "amount": 15000,
+      "dueDate": "2026-06-01",
+      "status": "Unpaid",
+      "transactionId": "-"
+    },
+    {
+      "id": "TXN008",
+      "studentName": "Saanvi Iyer",
+      "amount": 15000,
+      "dueDate": "2026-06-01",
+      "status": "Paid",
+      "transactionId": "TRX55463"
+    }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "studentName": "Aarav Sharma",
+      "date": "2026-05-11",
+      "status": "Present",
+      "subject": "Data Structures"
+    },
+    {
+      "id": 2,
+      "studentName": "Diya Patel",
+      "date": "2026-05-11",
+      "status": "Absent",
+      "subject": "Data Structures"
+    },
+    {
+      "id": 3,
+      "studentName": "Rohan Gupta",
+      "date": "2026-05-11",
+      "status": "Present",
+      "subject": "Data Structures"
+    }
+  ],
+  "exams": [
+    {
+      "subject": "Data Structures",
+      "date": "2026-05-11",
+      "time": "11:26",
+      "hall": "5",
+      "duration": "1 hour",
+      "totalMarks": "100",
+      "id": 1778479027905,
+      "status": "Marked"
+    }
+  ],
+  "results": [
+    {
+      "examId": 1778479027905,
+      "studentId": "S002",
+      "studentName": "Diya Patel",
+      "subject": "Data Structures",
+      "marks": 70,
+      "totalMarks": 100,
+      "grade": "B",
+      "percentage": 70,
+      "markedAt": "2026-05-11T06:19:05.592Z",
+      "id": 1778480340329.4321
+    },
+    {
+      "examId": 1778479027905,
+      "studentId": "S004",
+      "studentName": "Ananya Singh",
+      "subject": "Data Structures",
+      "marks": 50,
+      "totalMarks": 100,
+      "grade": "D",
+      "percentage": 50,
+      "markedAt": "2026-05-11T06:19:05.592Z",
+      "id": 1778480340329.988
+    },
+    {
+      "examId": 1778479027905,
+      "studentId": "S005",
+      "studentName": "Ishaan Malhotra",
+      "subject": "Data Structures",
+      "marks": 59,
+      "totalMarks": 100,
+      "grade": "D",
+      "percentage": 59,
+      "markedAt": "2026-05-11T06:19:05.592Z",
+      "id": 1778480340329.7356
+    },
+    {
+      "examId": 1778479027905,
+      "studentId": "S006",
+      "studentName": "Kavya Reddy",
+      "subject": "Data Structures",
+      "marks": 79,
+      "totalMarks": 100,
+      "grade": "B",
+      "percentage": 79,
+      "markedAt": "2026-05-11T06:19:05.592Z",
+      "id": 1778480340329.4355
+    },
+    {
+      "examId": 1778479027905,
+      "studentId": "S007",
+      "studentName": "Vivaan Joshi",
+      "subject": "Data Structures",
+      "marks": 26,
+      "totalMarks": 100,
+      "grade": "F",
+      "percentage": 26,
+      "markedAt": "2026-05-11T06:19:05.593Z",
+      "id": 1778480340329.2231
+    },
+    {
+      "examId": 1778479027905,
+      "studentId": "S009",
+      "studentName": "Arjun Verma",
+      "subject": "Data Structures",
+      "marks": 19,
+      "totalMarks": 100,
+      "grade": "F",
+      "percentage": 19,
+      "markedAt": "2026-05-11T06:19:05.593Z",
+      "id": 1778480340330.0603
+    },
+    {
+      "examId": 1778479027905,
+      "studentId": "S010",
+      "studentName": "Saanvi Iyer",
+      "subject": "Data Structures",
+      "marks": 79,
+      "totalMarks": 100,
+      "grade": "B",
+      "percentage": 79,
+      "markedAt": "2026-05-11T06:19:05.593Z",
+      "id": 1778480340330.0176
+    },
+    {
+      "examId": 1778479027905,
+      "studentId": "S011",
+      "studentName": "Ajay Jamale",
+      "subject": "Data Structures",
+      "marks": 87,
+      "totalMarks": 100,
+      "grade": "A",
+      "percentage": 87,
+      "markedAt": "2026-05-11T06:19:05.593Z",
+      "id": 1778480340330.3274
+    }
+  ],
+  "chartData": {
+    "studentGrowth": [
+      {
+        "name": "Jan",
+        "students": 400
+      },
+      {
+        "name": "Feb",
+        "students": 600
+      },
+      {
+        "name": "Mar",
+        "students": 800
+      },
+      {
+        "name": "Apr",
+        "students": 1100
+      },
+      {
+        "name": "May",
+        "students": 1250
+      }
+    ],
+    "departmentDistribution": [
+      {
+        "name": "Computer Science",
+        "value": 400
+      },
+      {
+        "name": "Mechanical",
+        "value": 300
+      },
+      {
+        "name": "Civil",
+        "value": 300
+      },
+      {
+        "name": "Electrical",
+        "value": 250
+      }
+    ]
+  },
+  "timetable": [
+    {
+      "id": 1,
+      "time": "09:00 AM",
+      "monday": "Data Structures",
+      "tuesday": "Physics",
+      "wednesday": "AI",
+      "thursday": "Data Structures",
+      "friday": "Soft Skills"
+    },
+    {
+      "id": 2,
+      "time": "10:00 AM",
+      "monday": "Mathematics",
+      "tuesday": "Mathematics",
+      "wednesday": "Soft Skills",
+      "thursday": "AI",
+      "friday": "Physics"
+    },
+    {
+      "id": 3,
+      "time": "11:00 AM",
+      "monday": "Break",
+      "tuesday": "Break",
+      "wednesday": "Break",
+      "thursday": "Break",
+      "friday": "Break"
+    },
+    {
+      "id": 4,
+      "time": "11:30 AM",
+      "monday": "AI",
+      "tuesday": "AI",
+      "wednesday": "Physics",
+      "thursday": "Mathematics",
+      "friday": "Data Structures"
+    },
+    {
+      "id": 5,
+      "time": "01:00 PM",
+      "monday": "Lab: CS101",
+      "tuesday": "Lab: CS101",
+      "wednesday": "Lab: PH102",
+      "thursday": "Lab: PH102",
+      "friday": "Self Study"
+    }
+  ],
+  "settings": {
+    "theme": "light",
+    "language": "English (India)",
+    "timezone": "(GMT+05:30) India Standard Time",
+    "institutionName": "National Institute of Technology",
+    "institutionEmail": "admin@nit.edu.in",
+    "address": "123 Education Hub, MG Road, Bengaluru",
+    "notifications": true
+  }
+}
